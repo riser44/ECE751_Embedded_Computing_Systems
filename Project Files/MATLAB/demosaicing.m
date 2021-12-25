@@ -1,0 +1,30 @@
+I = imread ('mandi.tif');
+figure(1);
+imshow(I);
+disp(I);
+writematrix(I,'./bayer_raw_data.xlsx');
+%Ihex = dec2hex(I);
+%disp(Ihex);
+%n = size(I);
+%disp(n);
+J = demosaic(I,'bggr');
+%disp(J);
+writematrix(J,'./rgb_integrated_data.xlsx');
+%Jhex = dec2hex(J);
+%disp(Jhex);
+figure(2);
+imshow(J);
+%n2 = size(J);
+
+Jr = J(:,:,1);
+writematrix(Jr,'./red_data.xlsx');
+Jg = J(:,:,2);
+writematrix(Jg,'./green_data.xlsx');
+Jb = J(:,:,3);
+writematrix(Jb,'./blue_data.xlsx');
+%disp(n2);
+%A = col2im(J,[318464 1],[2014 3039],'distinct');
+%disp(A);
+
+%imgHex=dec2hex (J) ;
+%writematrix(imgHex,'./matr2.txt');

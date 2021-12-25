@@ -1,0 +1,21 @@
+read_file -format sverilog { ./demosaic.sv ./demosaic_tb.sv }
+set current_design demosaic
+
+create_clock -name "clk" -period 10
+
+set prim_inputs [all_inputs] 
+set_input_delay 0.4 $prim_inputs
+set_driving_cell -lib_cell NAND2X2_LVT -library saed32lvt_tt0p85v25c $prim_inputs
+set_output_delay 0.4 [all_outputs]
+set_load 0.1 [all_outputs]
+set_max_transition 0.15 [current_design]
+set_wire_load_model -name 16000 -library saed32lvt_tt0p85v25c
+
+compile -map_effort medium
+set_fix_hold clk
+ungroup -all -flatten
+compile -map_effort medium
+
+
+report_area > area_high_quality_10ns.txt
+report_power > power_high_quality_10ns.txt
