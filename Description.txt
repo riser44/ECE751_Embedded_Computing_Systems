@@ -1,0 +1,4 @@
+We referenced a research paper which has an algorithm for demosaicing (a major block used in all image signal processors). 
+Demosaicing algorithm is a digital image process used to reconstruct a full color image from the incomplete color samples output from an image sensor overlaid with a color filter array (CFA). It is also known as CFA interpolation or color reconstruction.
+We designed an FPGA implementable hardware based on the algorithm in System Verilog.
+We verified our design with the results obtained from a MATLAB output RGB image (after feeding a Bayer image as an input to MATLAB)
